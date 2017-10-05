@@ -2,11 +2,11 @@
 
 | Component                   | Percentage |
 | :-------------------------: | :--------: |
-| Model Document              |            |
-| Code documentation          |            | 
-| Input file + parsing        |            |
-| Code design                 |            |
-| Test suite                  |            |
+| Model Document              | 12.5%      |
+| Code documentation          | 12.5%      | 
+| Input file + parsing        | 12.5%      |
+| Code                        | 50%        |
+| Test suite                  | 12.5%      |
 
 ---
 
@@ -25,7 +25,7 @@ document should be:
 
 ## Code Documentation
 All modules, classes, and methods must be documented.  Try 
-not to repeat things.  Make sure you include doctests as appropriate.
+not to repeat things.  Make sure you include doctests.
 
 ## Input file
 Your code must be able to read in and parse an `XML` input file (as discussed in class).  I will 
