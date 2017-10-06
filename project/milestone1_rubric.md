@@ -23,9 +23,12 @@ document should be:
    common situations.  You may want to show how the code works with a small set of 
    reactions.
 
+I recommend that you write your model doc in Markdown.  Please don't use Word.  Using 
+Latex is also acceptable.
+
 ## Code Documentation
-All modules, classes, and methods must be documented.  Try 
-not to repeat things.  Make sure you include doctests.
+All modules, classes, and methods must be documented.  Try not to repeat things.  Make 
+sure you include doctests.
 
 ## Input file
 Your code must be able to read in and parse an `XML` input file (as discussed in class).  I will 
