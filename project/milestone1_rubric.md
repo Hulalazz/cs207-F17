@@ -26,9 +26,14 @@ document should be:
 I recommend that you write your model doc in Markdown.  Please don't use Word.  Using 
 Latex is also acceptable.
 
+Please consult [!https://github.com/libqueso/queso](https://github.com/libqueso/queso) 
+for an example of a model doc.  In particular, take a look at `QUESO_users_manual.pdf` 
+for an example of a nice model doc in the form of a users manual.  Note that the `QUESO` 
+users manual is much more comprehensive than what I am asking for you to do here.  
+However, you should feel free to use the `QUESO` users manual as an example.
+
 ## Code Documentation
-All modules, classes, and methods must be documented.  Try not to repeat things.  Make 
-sure you include doctests.
+All modules, classes, and methods must be documented.  Make sure you include doctests.
 
 ## Input file
 Your code must be able to read in and parse an `XML` input file (as discussed in class).  I will 
@@ -38,15 +43,31 @@ provide you with the form of the input file.
 Your code must be written in an object oriented manner.  Here is an outline of the required 
 structural components:
 * You should include all classes in a single file called `chemkin.py`.  
+* All classes must include at least two special methods.
 * Make a class for reaction rate coefficients.  So far we have only talked about three types 
   of reaction rate coefficients:  constant, Arrhenius, and modified Arrhenius.  There are 
   other types and your code should be easily extensible to handle new types of reaction 
   rate coefficients in future verions.
-* Make a class for reactions.  So far we have only talked about elementary reactions.  
-  There are other types of reactions.  For example, *three-body reactions* and *duplicate* 
+  - At a minimum, your reaction rate coefficients class should consist of:
+    1. A reaction rate base class with a constructor and other special methods as necessary 
+       (e.g. `__repr__`).
+    2. A subclass that implements the Arrhenius reaction rate coefficients.
+    3. The constant reaction rate coefficient can go in it's own subclass, the base class, 
+       or the Arrhenius subclass.
+    4. If you think that there is a better way to design the reaction rate coefficients 
+       class, then feel free to do so.  Just remember that you must include the 
+       three typs of reaction rate coefficients discussed in class and permit the 
+       code to be extended to other types of reaction rate coefficients.
+* Make a class for reactions.  So far we have only talked about irreversible elementary reactions.  
+  There are other types of irreversible reactions.  For example, *three-body reactions* and *duplicate* 
   reactions are common.  There could be other types as well.  Your code should be 
   written in such a way that it can be easily extended to these other types of reactions 
   in future versions.
+  - At a minimum, your reactions class should consist of:
+    1. A base class with a constructor and other special methods as necessary
+       (e.g. `__repr__).
+    2. A subclass for irreversible reactions.
+    3. Methods for computing progress rates and reaction rates.
 * Note that we have only worked with **irreversible** reactions.  Most reactions are 
   actually reversible.  Your code should be aware of this fact and have hooks for 
   future modifications that can handle fully reversible reactions.
