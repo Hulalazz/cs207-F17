@@ -2,6 +2,10 @@
 
 <ctml>
 
+    <phase>
+        <speciesArray> H O OH H2 O2 </speciesArray>
+    </phase>
+
     <reactionData id="test_mechanism">
 
         <!-- reaction 01  -->
