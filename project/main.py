@@ -1,7 +1,7 @@
 import numpy as np
 import chemkin
 
-concs = np.array([2.0, 1.0, 0.5, 1.0, 1.0])
+concs = np.array([2.0, 1.0, 0.5, 1.0, 1.0, 0.0, 0.0, 0.25])
 T = 1500.0
 
 rxns = chemkin.reactions('rxnset_long.xml')
@@ -22,6 +22,19 @@ for r, kd in rxns.rxn_info.items():
             print("Nope")
     j += 1
 
+sdict = dict(enumerate(rxns.species))
+
+print("Temperature:")
+print("=======================")
+print("T = {0:5.3f}".format(T))
+print("\n\n")
+
+print("Initial Concentrations:")
+print("=======================")
+for i, x in enumerate(concs):
+    print("[{0}] = {1:5.3f}".format(sdict[i], x)) 
+print("\n\n")
+
 print("Reaction Rate Coefficients:")
 print("===========================")
 for rxn, rrc in enumerate(k):
@@ -34,7 +47,6 @@ f = rxns.reaction_rate(omega)
 
 print("Reaction Rates:")
 print("===============")
-sdict = dict(enumerate(rxns.species))
 for i, fs in enumerate(f):
     print("{0} = {1:18.16e}".format(sdict[i], fs))
 print("\n\n")
