@@ -4,7 +4,7 @@ import chemkin
 concs = np.array([2.0, 1.0, 0.5, 1.0, 1.0])
 T = 1500.0
 
-rxns = chemkin.reactions('rxns_hw5.xml')
+rxns = chemkin.reactions('rxnset_long.xml')
 rxns.read()
 
 k = np.zeros(rxns.M)
