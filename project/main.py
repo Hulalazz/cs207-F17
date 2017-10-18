@@ -22,10 +22,19 @@ for r, kd in rxns.rxn_info.items():
             print("Nope")
     j += 1
 
-print(k)
+print("Reaction Rate Coefficients:")
+print("===========================")
+for rxn, rrc in enumerate(k):
+    print("k{0} = {1:18.16e}".format(rxn+1, rrc))
+print("\n\n")
 
 omega = rxns.progress_rate(concs, k)
 
 f = rxns.reaction_rate(omega)
 
-print(f)
+print("Reaction Rates:")
+print("===============")
+sdict = dict(enumerate(rxns.species))
+for i, fs in enumerate(f):
+    print("{0} = {1:18.16e}".format(sdict[i], fs))
+print("\n\n")

@@ -13,7 +13,8 @@ class chemkin:
 
         for p in rxns.findall('phase'):
             species = p.find('speciesArray').text.split()
-        
+
+        self.species = species
         self.N = len(species)
 
         rxn_info = {}
