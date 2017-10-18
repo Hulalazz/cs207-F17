@@ -1,5 +1,6 @@
 import numpy as np
 import copy
+import xml.etree.ElementTree as ET
 
 class chemkin:
 
@@ -7,12 +8,85 @@ class chemkin:
         self.name = fname
 
     def read(self):
-        # Parse .xml input file
-        self.nuij_p  = np.array([[2.0, 0.0, 0.0], [1.0, 0.0, 1.0], [0.0, 1.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
-        self.nuij_pp = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [2.0, 0.0, 1.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0]])
-        self.nuij = self.nuij_pp - self.nuij_p
-        self.M = 3
-        self.N = 5
+        tree = ET.parse(self.name)
+        rxns = tree.getroot()
+
+        for p in rxns.findall('phase'):
+            species = p.find('speciesArray').text.split()
+        
+        self.N = len(species)
+
+        rxn_info = {}
+        stoich_info = {}
+        for reactions in rxns.findall('reactionData'):
+            M = 0
+            for rxn in reactions.findall('reaction'):
+                d = {}
+                for ratecoeff in rxn.findall('rateCoeff'):
+                    for model in ratecoeff.findall('modifiedArrhenius'):
+                        A = float(model.find('A').text)
+                        b = float(model.find('b').text)
+                        E = float(model.find('E').text)
+        
+                        d['modifiedArrhenius'] = [A, b, E]
+                        rxn_info[rxn.attrib['id']] = d
+        
+                    for model in ratecoeff.findall('Arrhenius'):
+                        A = float(model.find('A').text)
+                        E = float(model.find('E').text)
+        
+                        d['Arrhenius'] = [A, E]
+                        rxn_info[rxn.attrib['id']] = d
+        
+                    for model in ratecoeff.findall('Constant'):
+                        k = float(model.find('k').text)
+        
+                        d['Constant'] = k
+                        rxn_info[rxn.attrib['id']] = d
+        
+                reactants = rxn.find('reactants').text.split()
+                reactant_list = [0]*self.N
+                for i in reactants:
+                    s_nuij = i.split(':')
+                    sr = s_nuij[0]
+                    for idx, s in enumerate(species):
+                        if sr == s:
+                            reactant_list[idx] = int(s_nuij[1])
+                            break
+        
+                products = rxn.find('products').text.split()
+                product_list = [0]*self.N
+                for i in products:
+                    s_nuij = i.split(':')
+                    sp = s_nuij[0]
+                    for idx, s in enumerate(species):
+                        if sp == s:
+                            product_list[idx] = int(s_nuij[1])
+                            break
+        
+                stoich_info[rxn.attrib['id']] = {"reactants":reactant_list, "products":product_list}
+                    
+              
+                M += 1
+        
+        self.M = M
+
+        self.rxn_info = rxn_info
+        self.stoich_info = stoich_info
+        
+        nuij_p = np.zeros([self.N,self.M])
+        nuij_pp = np.zeros([self.N,self.M])
+        j = 0
+        for r, st_info in stoich_info.items():
+            col_r = st_info["reactants"]
+            col_p = st_info["products"]
+            nuij_p[:,j] = col_r
+            nuij_pp[:,j] = col_p
+            j += 1
+
+        self.nuij_p = nuij_p
+        self.nuij_pp = nuij_pp
+        self.nuij = nuij_pp - nuij_p
 
 
 class reactions(chemkin):
