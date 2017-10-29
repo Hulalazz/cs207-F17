@@ -5,10 +5,10 @@
 ## Due Date:  Monday, November 20th 2017
 Rerun the 11 rxn input file.
 
-Update data structures.
+Command line input.
 
-DOT?
-
-Propose a working plan for the group.
+`pip install`
 
 Propose new code feature.
+
+Database for NASA polynomials.
