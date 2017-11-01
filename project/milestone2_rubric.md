@@ -2,9 +2,9 @@
 
 | Component                   | Percentage |
 | :-------------------------: | :--------: |
-| Packaging and Installation  | 12.5%      |
-| Reversible Reactions        | 12.5%      | 
-| Proposed Feature            | 12.5%      |
+| Packaging and Installation  | 33%      |
+| Reversible Reactions        | 33%      | 
+| Proposed Feature            | 34%      |
 
 ---
 
