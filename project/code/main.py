@@ -1,5 +1,6 @@
 import numpy as np
 import chemkin
+import thermo
 
 concs = np.array([2.0, 1.0, 0.5, 1.0, 1.0, 0.0, 0.0, 0.25])
 T = 1500.0
@@ -23,6 +24,10 @@ for r, kd in rxns.rxn_info.items():
     j += 1
 
 sdict = dict(enumerate(rxns.species))
+
+thermochem = thermo.thermochem(rxns)
+
+exit()
 
 print("Temperature:")
 print("=======================")
