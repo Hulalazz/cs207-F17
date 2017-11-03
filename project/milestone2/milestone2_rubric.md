@@ -2,9 +2,9 @@
 
 | Component                   | Percentage |
 | :-------------------------: | :--------: |
-| Packaging and Installation  | 33%      |
-| Reversible Reactions        | 33%      | 
-| Proposed Feature            | 34%      |
+| Packaging and Installation  | 30%      |
+| Reversible Reactions        | 40%      | 
+| Proposed Feature            | 30%      |
 
 ---
 
@@ -34,7 +34,7 @@ everything installed correctly.
 ## Reversible Reactions and Database
 
 ### Reversible Reactions
-The code should now be able to handle reversible, elementary reactions. 
+The code should be able to handle reversible, elementary reactions. 
 I will provide the methods to you, but it is your responsibility to 
 organize them in your code base and refactor the methods as necessary 
 for consistency with your current code.
@@ -51,7 +51,7 @@ for reversible reactions.
 ## Proposed Feature
 You must propose a nontrivial feature for your final deliverable.  You **should not** 
 implement the feature for this milestone.  We will assess the feasibility of the feature 
-and make suggestions as necessary.
+and make suggestions during the code review.
 
 Here are the basic requirements:
 * You should motivate and describe the feature
@@ -61,5 +61,5 @@ Here are the basic requirements:
 * Overview how you envision the user to use your new feature
 * Discuss any external dependencies that your feature will require
 
-This preceeding requirements can be in a section of your code documentation called 
+The preceeding requirements can be in a section of your code documentation called 
 `Future Features` or some analogous section title.
