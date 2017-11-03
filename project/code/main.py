@@ -27,6 +27,8 @@ sdict = dict(enumerate(rxns.species))
 
 thermochem = thermo.thermochem(rxns)
 
+thermochem.backward_coeffs(k, T)
+
 exit()
 
 print("Temperature:")
