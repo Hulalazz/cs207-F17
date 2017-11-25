@@ -64,6 +64,7 @@ irreversible elementary reactions and combinations thereof at a minimum.  The us
 should specify the reaction set and participating species through an `.xml` input 
 file.  The NASA polynomial coefficients should be queried from a `sqlite` database.
 
+### Update NASA polynomial coefficients
 **Note:**  You must extend your thermodynamic coefficients database to include 
 several new species.  A `.txt` version of the new database can be found under the 
 `projects/final` directory or at the following website: 
